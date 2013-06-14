@@ -1,0 +1,30 @@
+
+CREATE TABLE UserSearch (
+    userid BIGINT,
+    user_avg_adr DOUBLE PRECISION,
+    user_avg_star DOUBLE PRECISION,
+    user_purchase_freq BIGINT,
+    user_recency_days BIGINT,
+    user_elite_status BIGINT,
+    hotelid BIGINT,
+    impression_position BIGINT,
+    hotel_star_rtg DOUBLE PRECISION,
+    hotel_drr CHARACTER VARYING,
+    hotel_price DOUBLE PRECISION,
+    hotel_travelerreviewscore DOUBLE PRECISION,
+    hotel_brandbool BIGINT,
+    hotel_historicalPrice DOUBLE PRECISION,
+    hotel_location_score BIGINT,
+    hotel_mkt_id    BIGINT,
+    search_bookingwindown   BIGINT,
+    search_childcnt BIGINT,
+    search_los  BIGINT,
+    search_numadults    BIGINT,
+    search_origdest_dist    DOUBLE PRECISION,
+    search_Sat_ind  BIGINT,
+    search_TPID BIGINT,
+    click_unixtime  BIGINT,
+    click_bool  BIGINT,
+    purchase_bool   BIGINT);
+
+COPY UserSearch FROM 'C:\Users\ben_000\Dropbox\Data\Expedia\ExpediaPublicCompDataRaw2.txt' DELIMITERS ' ' CSV HEADER NULL AS 'NULL';
