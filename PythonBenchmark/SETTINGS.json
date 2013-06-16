@@ -1,0 +1,6 @@
+{
+    "model_path":      "$DataPath/ExpediaPersonalizedSort/Models/basicPythonBenchmark.pickle",
+    "submission_path": "$DataPath/ExpediaPersonalizedSort/Submissions/basicPythonBenchmark.csv",
+    "train_path":      "$DataPath/ExpediaPersonalizedSort/Release 1/train.csv",
+    "test_path":       "$DataPath/ExpediaPersonalizedSort/Release 1/test.csv"
+}
