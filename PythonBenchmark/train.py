@@ -4,17 +4,18 @@ from sklearn.ensemble import RandomForestClassifier
 def main():
     print("Reading training data")
     train = data_io.read_train()
+    train.fillna(0, inplace=True)
 
     train_sample = train[:100000].fillna(value=0)
 
     feature_names = list(train_sample.columns)
     feature_names.remove("click_bool")
-    feature_names.remove("purchase_bool")
-    feature_names.remove("hotel_drr")
-    feature_names.remove("user_id")
+    feature_names.remove("booking_bool")
+    feature_names.remove("gross_bookings_usd")
+    feature_names.remove("date_time")
 
     features = train_sample[feature_names].values
-    target = train_sample["click_bool"].values
+    target = train_sample["booking_bool"].values
 
     print("Training the Classifier")
     classifier = RandomForestClassifier(n_estimators=50, 

@@ -1,4 +1,5 @@
 import csv
+from operator import itemgetter
 import os
 import json
 import pickle
@@ -26,9 +27,11 @@ def load_model():
     in_path = get_paths()["model_path"]
     return pickle.load(open(in_path))
 
-def write_submission(predictions):
+def write_submission(recommendations):
     submission_path = get_paths()["submission_path"]
-    rows = [(author_id, paper_ids_to_string(predictions[author_id])) for author_id in predictions]
+    rows = [(srch_id, prop_id)
+        for srch_id, prop_id, rank_float
+        in sorted(recommendations, key=itemgetter(0,2))]
     writer = csv.writer(open(submission_path, "w"), lineterminator="\n")
-    writer.writerow(("AuthorId", "PaperIds"))
+    writer.writerow(("UserId", "HotelId"))
     writer.writerows(rows)

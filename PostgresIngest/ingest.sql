@@ -3,7 +3,6 @@ CREATE TABLE UserSearch (
     srch_id BIGINT,
     date_time TIMESTAMP WITH TIME ZONE,
     site_id BIGINT,
-    visitor_id BIGINT,
     visitor_location_country_id BIGINT,
     visitor_hist_starrating DOUBLE PRECISION,
     visitor_hist_adr_usd DOUBLE PRECISION,
@@ -56,4 +55,4 @@ CREATE TABLE UserSearch (
     gross_bookings_usd DOUBLE PRECISION,
     booking_bool BIGINT);
 
-COPY UserSearch FROM 'C:\Users\ben_000\Dropbox\Data\ExpediaPersonalizedSort\Raw\ExpediaPublicCompDataRaw3.txt' DELIMITERS ' ' CSV HEADER NULL AS 'NULL';
+COPY UserSearch FROM 'C:\Users\ben_000\Dropbox\Data\ExpediaPersonalizedSort\Raw\ExpediaRaw.tsv' DELIMITERS '(tab goes here)' CSV HEADER NULL AS 'NULL';
