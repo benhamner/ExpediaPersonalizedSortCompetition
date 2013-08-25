@@ -27,11 +27,12 @@ def load_model():
     in_path = get_paths()["model_path"]
     return pickle.load(open(in_path))
 
-def write_submission(recommendations):
-    submission_path = get_paths()["submission_path"]
+def write_submission(recommendations, submission_path=None):
+    if submission_path is None:
+        submission_path = get_paths()["submission_path"]
     rows = [(srch_id, prop_id)
         for srch_id, prop_id, rank_float
         in sorted(recommendations, key=itemgetter(0,2))]
     writer = csv.writer(open(submission_path, "w"), lineterminator="\n")
-    writer.writerow(("UserId", "HotelId"))
+    writer.writerow(("SearchId", "PropertyId"))
     writer.writerows(rows)
