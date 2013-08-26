@@ -39,6 +39,15 @@ def remap_ids(ids_dict):
         ids_map[key] = {old_id: str(new_id+1) for new_id, old_id in enumerate(unique_ids)}
     return ids_map
 
+def save_ids_map(ids_map, release_path):
+    for key in ids_map:
+        ids_list = [(old_id, ids_map[key][old_id]) for old_id in ids_map[key]]
+        f = open(os.path.join(release_path, "%s_id_map.csv" % key), "w")
+        writer = csv.writer(f, lineterminator="\n")
+        writer.writerow(["OldId", "NewId"])
+        writer.writerows(ids_list)
+        f.close()
+
 def remap_row(ids_map, row):
     row[0] = ids_map["srch_ids"][row[0]]
     row[2] = ids_map["site_ids"][row[2]]
@@ -101,6 +110,7 @@ def create_competition_data():
 
     ids_dict = get_ids(raw_path)
     ids_map = remap_ids(ids_dict)
+    save_ids_map(ids_map, release_path)
     search_ids_split = split_search_ids(ids_map["srch_ids"].values(), 0.6, 0.1)
 
     f_raw = open(raw_path)
