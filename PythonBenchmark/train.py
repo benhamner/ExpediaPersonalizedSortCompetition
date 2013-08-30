@@ -13,6 +13,7 @@ def main():
     feature_names.remove("booking_bool")
     feature_names.remove("gross_bookings_usd")
     feature_names.remove("date_time")
+    feature_names.remove("position")
 
     features = train_sample[feature_names].values
     target = train_sample["booking_bool"].values

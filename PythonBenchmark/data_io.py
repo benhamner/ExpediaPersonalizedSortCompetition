@@ -27,9 +27,12 @@ def load_model():
     in_path = get_paths()["model_path"]
     return pickle.load(open(in_path))
 
-def write_submission(recommendations, submission_path=None):
-    if submission_path is None:
+def write_submission(recommendations, submission_file=None):
+    if submission_file is None:
         submission_path = get_paths()["submission_path"]
+    else:
+        path, file_name = os.path.split(get_paths()["submission_path"])
+        submission_path = os.path.join(path, submission_file)
     rows = [(srch_id, prop_id)
         for srch_id, prop_id, rank_float
         in sorted(recommendations, key=itemgetter(0,2))]

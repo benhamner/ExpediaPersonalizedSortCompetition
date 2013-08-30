@@ -117,7 +117,7 @@ def create_competition_data():
     raw_reader = csv.reader(f_raw, delimiter="\t")
     header = raw_reader.next()
     reader = row_reader(ids_map, raw_reader) 
-    train_writer.writerow(header[:14] + header[15:])
+    train_writer.writerow(header)
     test_writer.writerow(header[:14] + header[15:51])
     solution_writer.writerow(["SearchId", "PropertyId", "Relevance", "Usage"])
     position_writer.writerow(["SearchId", "PropertyId"])
@@ -137,7 +137,7 @@ def create_competition_data():
             position_writer.writerow([row[0], row[7]])
         for row in nsmallest:
             if search_ids_split[row[0]] == "train":
-                train_writer.writerow(row[:14]+row[15:])
+                train_writer.writerow(row)
             else:
                 test_writer.writerow(row[:14]+row[15:51])
                 relevance = str(min(5, 5*int(row[-1])+int(row[-3])))
